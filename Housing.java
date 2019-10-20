@@ -2,17 +2,21 @@
 
 abstract class Housing implements Subject{
     
-    HousingData data;
+    protected HousingData data;
 
     private int costPerNight;
 
     private String nameOfHousing;
 
-    Housing(Boolean occupantStatus,Boolean cleanStatus, int cost, String nameOfHousing){
-        this.data.clean = cleanStatus;
-        this.data.isEmpty = occupantStatus;
+    private double depositPecentage;
+
+    Housing(){}
+
+    Housing(String housingType, int cost, String nameOfHousing,double depositPecentage){
+        this.data.housingType = housingType;
         this.costPerNight = cost;
         this.nameOfHousing = nameOfHousing;
+        this.depositPecentage = depositPecentage;
     }
 
     @Override
@@ -48,4 +52,7 @@ abstract class Housing implements Subject{
         return nameOfHousing;
     }
 
+    public double getDepositPercentage(){
+        return depositPecentage;
+    }
 }
