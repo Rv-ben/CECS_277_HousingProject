@@ -1,7 +1,12 @@
 class HousingData{
 
-
+    /**
+     * True if housing is empty
+     */
     public boolean isEmpty;
 
-    public boolean clean;
+    /**
+     * Type of housing
+     */
+    public String housingType;
 }
