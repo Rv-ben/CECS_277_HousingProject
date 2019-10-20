@@ -1,30 +1,36 @@
-import java.util.ArrayList;
+
 
 class Cottage extends Housing{
-
-    ArrayList<Observer> listofObservers;
 
     boolean cableAccess;
 
     Cottage(String nameOfHousing, int costPerNight){
         super("Cottage",costPerNight,nameOfHousing,.5);
-        listofObservers = new ArrayList<Observer>();
+        cableAccess = false;
     }
 
-    public void attach(Observer deskObserver){
-        listofObservers.add(deskObserver);
+    public boolean addCableAccess(){
+
+        if(cableAccess)
+            return false;
+        
+        //adds 5 dollars to cost pernight
+        costPerNight = costPerNightOriginal + 5;
+
+        calculateDespoit();
+
+        return true;
     }
 
-    public void detach (Observer deskObserver){
-        listofObservers.remove(deskObserver);
+    protected void reset(){
+        super.reset();
+        cableAccess = false;
     }
 
-    public void notifyObservers(){
-        FrontDesk desk = (FrontDesk)listofObservers.get(0);
-        desk.update(data);
+    protected void updateDaysRemaining(){
+        super.updateDaysRemaining();
+        if(data.isEmpty)
+            reset();
     }
 
-    public boolean cottageEmpty(){
-        return data.isEmpty;
-    }
 }

@@ -1,58 +1,70 @@
+import java.util.ArrayList;
 
+abstract class Housing implements Subject {
 
-abstract class Housing implements Subject{
+    ArrayList<Observer> listofObservers;
     
     protected HousingData data;
 
-    private int costPerNight;
+    protected int costPerNightOriginal, costPerNight;
 
-    private String nameOfHousing;
+    protected String nameOfHousing, guestName;
 
-    private double depositPecentage;
+    protected double depositPecentage,deposit;
 
-    Housing(){}
+    protected int daysRemaining;
 
     Housing(String housingType, int cost, String nameOfHousing,double depositPecentage){
         this.data.housingType = housingType;
-        this.costPerNight = cost;
+        this.costPerNightOriginal = cost;
         this.nameOfHousing = nameOfHousing;
         this.depositPecentage = depositPecentage;
     }
 
-    @Override
-    public abstract void attach(Observer obs);
+    public void attach(Observer deskObserver){
+        listofObservers.add(deskObserver);
+    }
 
-    @Override
-    public abstract void detach(Observer obs);
+    public void detach (Observer deskObserver){
+        listofObservers.remove(deskObserver);
+    }
 
-    @Override
-    public abstract void notifyObservers();
+    public void notifyObservers(){
+        listofObservers.get(0).update(data);
+    }
 
-    public void setHousingData(HousingData data){
-        this.data = data;
+    public void calculateDespoit(){
+        deposit = costPerNight * depositPecentage;
+    }
+
+    protected boolean isEmpty(){
+        return data.isEmpty;
+    }
+
+    protected void reset(){
+        costPerNight = costPerNightOriginal;
+        guestName = "";
+    }
+
+    protected void addGuest(String guestName, int daysStaying){
+        this.guestName= guestName;
+        this.daysRemaining = daysStaying;
+    }
+
+    protected void updateDaysRemaining(){
+        if(daysRemaining != 0)
+            daysRemaining--;
+        else{
+            notifyObservers();
+            data.isEmpty = true;
+        }
+    }
+
+    /**
+     * @return the daysRemaining
+     */
+    public int getDaysRemaining() {
+        return daysRemaining;
     }
     
-    public void setCostPerNight(int costPerNight){
-        this.costPerNight = costPerNight;
-    }
-
-    public void setNameOfHosuing(String nameOfHousing){
-        this.nameOfHousing = nameOfHousing;
-    }
-
-    public HousingData getHosuingData(){
-        return data;
-    }
-
-    public int getCostPerNight(){
-        return costPerNight;
-    }
-
-    public String getNameOfHousing(){
-        return nameOfHousing;
-    }
-
-    public double getDepositPercentage(){
-        return depositPecentage;
-    }
 }
