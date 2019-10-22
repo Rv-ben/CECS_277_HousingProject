@@ -21,12 +21,12 @@ class Bungalow extends Housing{
 
     }
 
-    protected void reset(){
+    public void reset(){
         super.reset();
         portableAC = false;
     }
 
-    protected void updateDaysRemaining(){
+    public void updateDaysRemaining(){
         super.updateDaysRemaining();
         if(data.isEmpty)
             reset();

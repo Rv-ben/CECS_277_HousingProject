@@ -22,12 +22,12 @@ class Cottage extends Housing{
         return true;
     }
 
-    protected void reset(){
+    public void reset(){
         super.reset();
         cableAccess = false;
     }
 
-    protected void updateDaysRemaining(){
+    public void updateDaysRemaining(){
         super.updateDaysRemaining();
         if(data.isEmpty)
             reset();

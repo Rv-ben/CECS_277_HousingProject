@@ -4,7 +4,7 @@ abstract class Housing implements Subject {
 
     ArrayList<Observer> listofObservers;
     
-    protected HousingData data;
+    public HousingData data = new HousingData();
 
     protected int costPerNightOriginal, costPerNight;
 
@@ -19,6 +19,7 @@ abstract class Housing implements Subject {
         this.costPerNightOriginal = cost;
         this.nameOfHousing = nameOfHousing;
         this.depositPecentage = depositPecentage;
+        listofObservers = new ArrayList<Observer>();
     }
 
     public void attach(Observer deskObserver){
@@ -30,33 +31,34 @@ abstract class Housing implements Subject {
     }
 
     public void notifyObservers(){
-        listofObservers.get(0).update(data);
+        listofObservers.get(0).update();
     }
 
     public void calculateDespoit(){
         deposit = costPerNight * depositPecentage;
     }
 
-    protected boolean isEmpty(){
+    public boolean isEmpty(){
         return data.isEmpty;
     }
 
-    protected void reset(){
+    public void reset(){
         costPerNight = costPerNightOriginal;
         guestName = "";
     }
 
-    protected void addGuest(String guestName, int daysStaying){
+    public void addGuest(String guestName, int daysStaying){
         this.guestName= guestName;
         this.daysRemaining = daysStaying;
+        data.isEmpty = false;
     }
 
-    protected void updateDaysRemaining(){
+    public void updateDaysRemaining(){
         if(daysRemaining != 0)
             daysRemaining--;
         else{
-            notifyObservers();
             data.isEmpty = true;
+            notifyObservers();
         }
     }
 
@@ -65,6 +67,10 @@ abstract class Housing implements Subject {
      */
     public int getDaysRemaining() {
         return daysRemaining;
+    }
+
+    public void stoString(){
+        System.out.println(this.guestName + " "+daysRemaining);
     }
     
 }

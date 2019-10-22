@@ -1,9 +1,9 @@
 class HousingData{
-
+    HousingData(){}
     /**
      * True if housing is empty
      */
-    public boolean isEmpty;
+    public boolean isEmpty = true;
 
     /**
      * Type of housing
