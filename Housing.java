@@ -70,7 +70,8 @@ abstract class Housing implements Subject {
     }
 
     public void stoString(){
-        System.out.println(this.guestName + " "+daysRemaining);
+        if(!data.isEmpty)
+            System.out.println(this.guestName + " "+daysRemaining);
     }
     
 }
