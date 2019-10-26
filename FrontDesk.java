@@ -1,58 +1,45 @@
 import java.util.*;
 
 
-class FrontDesk implements Subject,Observer{
+class FrontDesk implements Observer{
 
     ArrayList<Housing> housings;
-    ArrayList<Guest> waitList;
+    ArrayList<Reservation> reservations;
+    Date currentTime;
 
     FrontDesk(){
         housings = new ArrayList<Housing>();
-        waitList = new ArrayList<Guest>();
+        reservations = new ArrayList<Reservation>();
+        currentTime = new Calendar.Builder(new Date());
     }
 
     @Override
     public void update() {
-        notifyObservers();
-    }
-
-    @Override
-    public void attach(Observer obs) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void detach(Observer obs) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void notifyObservers() {
         for(Housing currentHousing: housings){
-            if(currentHousing.data.isEmpty){
-                //find first guest needing this housing
-                for(Guest currentGuest: waitList){
-                    if(currentGuest.getHousingWanted().equalsIgnoreCase(currentHousing.nameOfHousing)){
-                        //book guest or notify
-                        bookGuest(currentGuest, currentHousing);
-                        System.out.println("Booked");
-                        waitList.remove(currentGuest);
-                        break;
-                    }    
+            if(currentHousing.isEmpty){
+                for(Reservation currentReservation: reservations){
+                    if(currentReservation.housingName.equalsIgnoreCase(currentHousing.nameOfHousing)){
+                    }
                 }
             }
         }
     }
-
-    public void bookGuest(Guest currentGuest, Housing housingWanted){
-        if(housingWanted.isEmpty())
-            housingWanted.addGuest(currentGuest.getGuestName(),currentGuest.getDaysWanted());
-        else    
-            waitList.add(currentGuest);
+    
+    public void bookGuest(){
+        
     }
 
+    public void newReservation(Reservation newReservation){
+        reservations.add(newReservation);
+    }
 
+    public boolean isHousingEmpty(String housingName){
+        for(Housing i: housings){
+            if(i.nameOfHousing.equalsIgnoreCase(housingName)){
+                return i.isEmpty;
+            }
+        }
+        return false;
+    }
 
 }

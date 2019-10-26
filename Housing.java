@@ -3,8 +3,6 @@ import java.util.ArrayList;
 abstract class Housing implements Subject {
 
     ArrayList<Observer> listofObservers;
-    
-    public HousingData data = new HousingData();
 
     protected int costPerNightOriginal, costPerNight;
 
@@ -14,8 +12,12 @@ abstract class Housing implements Subject {
 
     protected int daysRemaining;
 
+    protected boolean isEmpty = true;
+
+    protected String housingType;
+
     Housing(String housingType, int cost, String nameOfHousing,double depositPecentage){
-        this.data.housingType = housingType;
+        this.housingType = housingType;
         this.costPerNightOriginal = cost;
         this.nameOfHousing = nameOfHousing;
         this.depositPecentage = depositPecentage;
@@ -39,7 +41,7 @@ abstract class Housing implements Subject {
     }
 
     public boolean isEmpty(){
-        return data.isEmpty;
+        return isEmpty;
     }
 
     public void reset(){
@@ -50,14 +52,14 @@ abstract class Housing implements Subject {
     public void addGuest(String guestName, int daysStaying){
         this.guestName= guestName;
         this.daysRemaining = daysStaying;
-        data.isEmpty = false;
+        this.isEmpty = false;
     }
 
     public void updateDaysRemaining(){
         if(daysRemaining != 0)
             daysRemaining--;
         else{
-            data.isEmpty = true;
+            this.isEmpty = true;
             notifyObservers();
         }
     }
@@ -70,7 +72,7 @@ abstract class Housing implements Subject {
     }
 
     public void stoString(){
-        if(!data.isEmpty)
+        if(!this.isEmpty)
             System.out.println(this.guestName + " "+daysRemaining);
     }
     

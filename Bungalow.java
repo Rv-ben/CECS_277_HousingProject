@@ -28,7 +28,7 @@ class Bungalow extends Housing{
 
     public void updateDaysRemaining(){
         super.updateDaysRemaining();
-        if(data.isEmpty)
+        if(isEmpty)
             reset();
     }
 }

@@ -29,7 +29,7 @@ class Cottage extends Housing{
 
     public void updateDaysRemaining(){
         super.updateDaysRemaining();
-        if(data.isEmpty)
+        if(this.isEmpty)
             reset();
     }
 
