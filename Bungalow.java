@@ -2,33 +2,15 @@
 
 class Bungalow extends Housing{
 
-    boolean portableAC;
-
     Bungalow(String nameOfHousing,int costPerNight){
         super("Bungalow",costPerNight,nameOfHousing,.2);
-        portableAC = false;
     }
 
-    public boolean addCableAccess(){
-
-        if(portableAC)
-            return false;
-
-        costPerNight = costPerNightOriginal +20;
-
-        calculateDespoit();
-        return true;
-
+    public void displayUpgrades(){
+        System.out.println("Add portable AC for 20 dollars a night");
     }
 
-    public void reset(){
-        super.reset();
-        portableAC = false;
-    }
-
-    public void updateDaysRemaining(){
-        super.updateDaysRemaining();
-        if(isEmpty)
-            reset();
+    public int getUpgradeCostPerNight(){
+        return 20;
     }
 }

@@ -1,3 +1,3 @@
 interface Observer{
-    void update();
+    void update(Object ob);
 }

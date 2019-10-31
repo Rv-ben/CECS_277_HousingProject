@@ -4,11 +4,11 @@ abstract class Housing implements Subject {
 
     ArrayList<Observer> listofObservers;
 
-    protected int costPerNightOriginal, costPerNight;
+    protected int costPerNight;
 
     protected String nameOfHousing, guestName;
 
-    protected double depositPecentage,deposit;
+    protected double depositPecentage, deposit;
 
     protected int daysRemaining;
 
@@ -16,24 +16,26 @@ abstract class Housing implements Subject {
 
     protected String housingType;
 
-    Housing(String housingType, int cost, String nameOfHousing,double depositPecentage){
+    Housing(String housingType, int cost, String nameOfHousing, double depositPecentage) {
         this.housingType = housingType;
-        this.costPerNightOriginal = cost;
+        this.costPerNight = cost;
         this.nameOfHousing = nameOfHousing;
         this.depositPecentage = depositPecentage;
         listofObservers = new ArrayList<Observer>();
     }
 
-    public void attach(Observer deskObserver){
+    public abstract void displayUpgrades();
+
+    public void attach(Observer deskObserver) {
         listofObservers.add(deskObserver);
     }
 
-    public void detach (Observer deskObserver){
+    public void detach(Observer deskObserver) {
         listofObservers.remove(deskObserver);
     }
 
-    public void notifyObservers(){
-        listofObservers.get(0).update();
+    public void notifyObservers() {
+        listofObservers.get(0).update(this);
     }
 
     public void calculateDespoit(){
@@ -45,7 +47,6 @@ abstract class Housing implements Subject {
     }
 
     public void reset(){
-        costPerNight = costPerNightOriginal;
         guestName = "";
     }
 
@@ -71,9 +72,8 @@ abstract class Housing implements Subject {
         return daysRemaining;
     }
 
-    public void stoString(){
-        if(!this.isEmpty)
-            System.out.println(this.guestName + " "+daysRemaining);
+    public String toString(){
+        return nameOfHousing;
     }
     
 }
