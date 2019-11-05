@@ -1,7 +1,9 @@
 C
+B
 Morning Glory
-11/8/2019
+11/08/2019
 5
+N
 Jane Doe
 1234 Beach Blvd.  Long Beach, CA
 (562) 555-1234
@@ -11,24 +13,76 @@ Jane M. Doe
 08/20
 8512  
 C
+B
 Morning Glory
 11/13/2019
 3
+N
 Pam Zo
 9801 Aspen Ave.  Norwalk, CA
 (562) 555-1234
 pamzo@gmail.com
+Pamela Zo
 2468 1012 1416
 04/22
 1233 
 C
-Morning Glory 
+B
+Morning Glory
 11/10/2019
 3
+N
+y
 Tim Johnson
 4657 Colorado St.  Santa Ana, CA
 (562) 555-1789
 tj89@gmail.com
-Ana JohnsonNumber:1357 9111 3151
+Ana Johnson
+1357 9111 3151
+12/19
+545
+C
+C
+Perlita De Oro
+11/10/2019
+3
+Y
+2
+Tim Johnson
+4657 Colorado St. Santa Ana, CA
+(562) 555-1789
+tj89@gmail.com
+Ana Johnson
+1357 9111 3151
+12/19
+545
+C
+B
+Morning Glory
+11/09/2019
+3
+N
+y
+Antonio Vargas
+7654 Colonia Ave. Mission Hills, CA
+(714) 555-1965
+varan@gmail.com
+Antonio Vargas
+2021 2223 2425
+02/22
+611
+C
+C
+Sunset Paradise
+11/10/2019
+3
+Y
+1
+Tim Johnson
+4657 Colorado St. Santa Ana, CA
+(562) 555-1789
+tj89@gmail.com
+Ana Johnson
+1357 9111 3151
 12/19
 545

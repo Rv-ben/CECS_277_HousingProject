@@ -14,6 +14,7 @@ class FrontDesk implements Observer{
         housings = new ArrayList<Housing>();
         reservations = new ArrayList<Reservation>();
         resNumbers = new ArrayList<Integer>();
+        waitList = new ArrayList<Reservation>();
         currentTime = LocalDate.now();
     }
 
@@ -74,7 +75,7 @@ class FrontDesk implements Observer{
     public boolean isDaysStayingAv(Reservation res){
         Housing temp = findHousingByName(res.housingName);
         for(Reservation i : reservations){
-            if(i.housingName.equals(temp.nameOfHousing)&&!(res.name.equals(i.name)))
+            if(i.housingName.equals(temp.nameOfHousing)&&(res != i))
                 if(isOverLap(res, i))
                     return false;
         }

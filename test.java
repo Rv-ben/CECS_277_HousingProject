@@ -6,15 +6,26 @@ import java.util.Scanner;
 
 
 class test{
-    static Scanner userInput = new Scanner(System.in);
+    static Scanner userInput;
     static FrontDesk desk = new FrontDesk();
     
     public static void main(String []args) throws Exception{
         Scanner cpuInput = new Scanner(new File("housings.txt"));
+        userInput = new Scanner(new File("Demo.txt"));
         while(cpuInput.hasNext())
             loadHousings(cpuInput);
+        while(userInput.hasNext())
+            mainMenu();
+            userInput = new Scanner(System.in);
         while(mainMenu());
         
+    }
+
+    public static void debug(){
+        for(Reservation i: desk.reservations)
+            System.out.println("R: "+i.name+" "+ i.reservationNum+" "+i.housingName);
+        for(Reservation i: desk.waitList)
+            System.out.println("W: "+i.name+" "+ i.reservationNum+" "+i.housingName);
     }
 
     public static boolean mainMenu(){
@@ -36,6 +47,9 @@ class test{
                 break;
             case 'E':
                 editReservation();
+                break;
+            case 'D':
+                debug();
                 break;
             case 'S':
                 return false;
