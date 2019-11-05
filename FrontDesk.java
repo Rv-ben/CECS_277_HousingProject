@@ -84,7 +84,13 @@ class FrontDesk implements Observer{
 
     public void printSummary(Reservation res){
         System.out.println("Deposit Charged: "+res.deposit);
-        System.out.println();
+        res.display();
+    }
+
+    public void calculateCost(Reservation res){
+        Housing temp = findHousingByName(res.housingName);
+        res.totalCost = temp.costPerNight*res.daysStaying + res.upgradeCost;
+        res.deposit = temp.deposit * res.totalCost;
     }
 
     public Reservation getResFromNum(int reservationNum){
@@ -106,6 +112,7 @@ class FrontDesk implements Observer{
                     break;
                 }
             }
+        System.out.println("Deposit Returned: "+res.deposit);
     }
 
     public int generateReservationNumber(){

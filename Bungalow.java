@@ -10,7 +10,7 @@ class Bungalow extends Housing{
         System.out.println("Add portable AC for 20 dollars a night");
     }
 
-    public int getUpgradeCostPerNight(){
+    public int getUpgradeCost(){
         return 20;
     }
 }

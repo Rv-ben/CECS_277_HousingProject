@@ -10,7 +10,7 @@ class Cottage extends Housing{
         System.out.println("Add cable access for 5 dollars a night");
     }
 
-    public int getUpgradeCostPerNight(){
+    public int getUpgradeCost(){
         return 5;
     }
 

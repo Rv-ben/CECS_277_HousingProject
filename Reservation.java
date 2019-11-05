@@ -12,7 +12,7 @@ class Reservation implements Comparable<Reservation>{
     
     public Card cardInfo;
 
-    public double totalCost,deposit;
+    public double totalCost,deposit,upgradeCost;
 
     public int compareTo(Reservation otherRev){
         return this.checkInDay.compareTo(otherRev.checkInDay);

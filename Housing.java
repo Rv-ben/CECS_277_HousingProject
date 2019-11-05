@@ -26,6 +26,8 @@ abstract class Housing implements Subject {
 
     public abstract void displayUpgrades();
 
+    public abstract int getUpgradeCost();
+
     public void attach(Observer deskObserver) {
         listofObservers.add(deskObserver);
     }

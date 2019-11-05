@@ -76,20 +76,23 @@ class test{
 
         String housingName = userInput.nextLine();
 
+        Reservation res = new Reservation();
+
         System.out.println("Choose a check in date:");
         
         String checkIn = userInput.nextLine();
 
         System.out.println("How many days will you like to stay?");
 
-        int daysStaying = userInput.nextLine().charAt(0);
+        int daysStaying = Integer.parseInt(userInput.nextLine());
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         LocalDate checkInDate = LocalDate.parse(checkIn,dateTimeFormatter);
-        LocalDate checkOutDate = LocalDate.of(checkInDate.getYear(),checkInDate.getMonth(),checkInDate.getDayOfMonth());
-        checkOutDate.plusDays(daysStaying);
+        LocalDate checkOutDate = checkInDate.plusDays(daysStaying);
 
-        Reservation res = new Reservation();
+
+
+        res.upgradeDays = selectUpgrades(desk.findHousingByName(housingName));
 
         res.housingName = housingName;
         res.checkInDay = checkInDate;
@@ -112,6 +115,22 @@ class test{
 
         System.out.println("Your reservation number is: "+res.reservationNum);
     }
+
+    public static int selectUpgrades(Housing housing){
+        System.out.println("Would you like the following upgrade?");
+        housing.displayUpgrades();
+        
+        char answer = userInput.nextLine().charAt(0);
+        if(answer == 'Y'){
+            System.out.println("How many nights?");
+            return Integer.parseInt(userInput.nextLine())*housing.getUpgradeCost();
+        }
+        else{
+            return 0;
+        }
+
+
+    } 
 
     public static void gatherUserInfo(Reservation res) {
 
@@ -162,7 +181,7 @@ class test{
 
         switch(userInput.nextLine().charAt(0)){
             case 'N':
-                //edit number of days
+                editNumOfDays(res);
                 break;
             case 'C':
                 desk.cancelReservation(res);
@@ -171,7 +190,15 @@ class test{
     }
 
     public static void editNumOfDays(Reservation res) {
-        System.out.println("N)umber of nights");
-        System.out.println("C)ancel Reservation");
+        System.out.println("Enter Number of Nights");
+        int addedDays = Integer.parseInt(userInput.nextLine());
+        Reservation temp = new Reservation();
+        temp.checkInDay = res.checkOutDate;
+        temp.checkOutDate = res.checkOutDate.plusDays(addedDays);
+
+        if(desk.isDaysStayingAv(temp))
+            res.checkOutDate = res.checkOutDate.plusDays(addedDays);
+        else
+            System.out.println("Sorry Dogg Can't adds these days");
     }
 }
